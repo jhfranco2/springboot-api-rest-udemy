@@ -7,6 +7,9 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -28,6 +31,12 @@ public class ClienteRestController {
     @GetMapping("/clientes")
     public List<Cliente> index() {
         return clientesService.findAll();
+    }
+
+    @GetMapping("/clientes/page/{page}")
+    public Page<Cliente> index(@PathVariable Integer page) {
+        Pageable pageable = PageRequest.of(page, 4);
+        return clientesService.findAll(pageable);
     }
 
     @GetMapping("/clientes/{id}")
@@ -52,7 +61,7 @@ public class ClienteRestController {
     }
 
     @PostMapping("/clientes")
-    public ResponseEntity<?> create(@Valid @RequestBody Cliente cliente,BindingResult result) {
+    public ResponseEntity<?> create(@Valid @RequestBody Cliente cliente, BindingResult result) {
         Cliente clienteNuevo = null;
         Map<String, Object> response = new HashMap<>();
         Boolean resultado = result.hasErrors();
@@ -64,7 +73,7 @@ public class ClienteRestController {
              * errors.add("El campo '" + err.getField() + "' " + err.getDefaultMessage());
              * }
              */
-           /* */ List<String> errors = result.getFieldErrors()
+            /* */ List<String> errors = result.getFieldErrors()
                     .stream()
                     .map(err -> "El campo '" + err.getField() + "' " + err.getDefaultMessage())
                     .collect(Collectors.toList());
@@ -73,7 +82,7 @@ public class ClienteRestController {
 
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.BAD_REQUEST);
         }
-        
+
         try {
             clienteNuevo = clientesService.save(cliente);
         } catch (DataAccessException e) {
