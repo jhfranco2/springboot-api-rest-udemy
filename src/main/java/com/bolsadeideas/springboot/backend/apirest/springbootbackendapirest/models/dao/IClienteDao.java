@@ -6,5 +6,4 @@ import com.bolsadeideas.springboot.backend.apirest.springbootbackendapirest.mode
 
 public interface IClienteDao extends JpaRepository<Cliente, Long> {
 
-    
 }

@@ -14,6 +14,7 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
@@ -22,10 +23,10 @@ import lombok.Data;
 @Entity
 public class Cliente implements Serializable {
 
-    @PrePersist
+    /*@PrePersist
     public void prePersist() {
         createAt = new Date();
-    }
+    }*/
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,14 +40,17 @@ public class Cliente implements Serializable {
     @NotEmpty(message = "El apellido no puede estar vacio")
     private String apellido;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false, unique = false)
     @NotEmpty(message = "El email no puede estar vacio")
     @Email(message = "No es una dirección de correo bien formada")
     private String email;
 
     @Column(name = "create_at")
     @Temporal(TemporalType.DATE)
+    @NotNull(message = "No puede estar vacia la fecha")
     private Date createAt;
 
+    private String foto;
+    
     private static final long serialVersionUID = 1L;
 }
