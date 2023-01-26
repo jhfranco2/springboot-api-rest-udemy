@@ -1,24 +1,15 @@
 package com.bolsadeideas.springboot.backend.apirest.springbootbackendapirest.controllers;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
-import javax.sound.midi.Patch;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.core.io.Resource;
-import org.springframework.core.io.UrlResource;
+
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -46,8 +37,6 @@ public class ClienteRestController {
     private IClienteService clientesService;
 
     private IUploadFileService uploadService;
-
-    //private final Logger log = LoggerFactory.getLogger(ClienteRestController.class);
 
     @GetMapping("/clientes")
     public List<Cliente> index() {
