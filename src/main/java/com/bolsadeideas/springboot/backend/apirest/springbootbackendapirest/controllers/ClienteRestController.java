@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.bolsadeideas.springboot.backend.apirest.springbootbackendapirest.models.entity.Cliente;
+import com.bolsadeideas.springboot.backend.apirest.springbootbackendapirest.models.entity.Region;
 import com.bolsadeideas.springboot.backend.apirest.springbootbackendapirest.models.services.IClienteService;
 import com.bolsadeideas.springboot.backend.apirest.springbootbackendapirest.models.services.IUploadFileService;
 
@@ -216,4 +217,9 @@ public class ClienteRestController {
         return new ResponseEntity<Resource>(recurso, cabecera, HttpStatus.OK);
     }
 
+    
+    @GetMapping("/clientes/regiones")
+    public List<Region> listarRegiones() {
+        return clientesService.findAllRegiones();
+    }
 }

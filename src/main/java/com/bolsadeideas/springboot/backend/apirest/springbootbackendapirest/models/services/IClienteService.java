@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.bolsadeideas.springboot.backend.apirest.springbootbackendapirest.models.entity.Cliente;
+import com.bolsadeideas.springboot.backend.apirest.springbootbackendapirest.models.entity.Region;
 
 public interface IClienteService {
 
@@ -18,4 +19,6 @@ public interface IClienteService {
     public void delete(Long id);
 
     public Page<Cliente> findAll(Pageable pageable);
+
+    public List<Region> findAllRegiones();
 }

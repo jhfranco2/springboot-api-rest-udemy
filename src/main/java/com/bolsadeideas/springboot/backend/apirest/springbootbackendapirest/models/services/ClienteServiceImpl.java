@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.bolsadeideas.springboot.backend.apirest.springbootbackendapirest.models.dao.IClienteDao;
 import com.bolsadeideas.springboot.backend.apirest.springbootbackendapirest.models.entity.Cliente;
+import com.bolsadeideas.springboot.backend.apirest.springbootbackendapirest.models.entity.Region;
 
 import lombok.AllArgsConstructor;
 
@@ -46,6 +47,12 @@ public class ClienteServiceImpl implements IClienteService {
     public void delete(Long id) {
         clienteDao.deleteById(id);
 
+    }
+
+    @Override
+    public List<Region> findAllRegiones() {
+        // TODO Auto-generated method stub
+        return clienteDao.findAllRegiones();
     }
 
 }
